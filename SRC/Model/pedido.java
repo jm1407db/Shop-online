@@ -1,13 +1,26 @@
 package Model;
 
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class pedido {
     private String idPedido;
     private ArrayList<product> orderProduct= new ArrayList<product>();
+    private LocalDateTime buyDate;
 
     public pedido(String idPedido) {
         this.idPedido = idPedido;
+        this.buyDate= buyDate.now();
+    }
+
+    public LocalDateTime getBuyDate() {
+        return buyDate;
+    }
+
+    public void setBuyDate(LocalDateTime buyDate) {
+        this.buyDate = buyDate;
     }
 
     public String getIdPedido() {
@@ -25,12 +38,14 @@ public class pedido {
         }
         return totalPrice;
     }
-    
-    public String ShowInfoOrder(){
-        String mensaje="";
-        for (int i = 0; i < orderProduct.size(); i++) {
-            mensaje+="El producto "+orderProduct.get(i).getNameProduct()+" tuvo un costo de:$"+orderProduct.get(i).getPrice()+"\n";
-        } 
-        return mensaje;
+
+    public void ShowInfoOrder(){
+        System.out.println("Id del pedido="+ idPedido);
+        System.out.println("Fecha del pedido="+buyDate);
+        for (product p : orderProduct) {
+             System.out.println("El producto "+p.getNameProduct()+" tuvo un costo de:$"+p.getPrice());
+        }
+        System.out.println("El costo total del producto es="+ ShowTotalPrice());
+        System.out.println("la fecha maxima de pago"+buyDate.plusHours(24));
     }
 }
