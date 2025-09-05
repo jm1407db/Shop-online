@@ -17,14 +17,20 @@ public class pedido {
     public void AddProduct(product product){
         orderProduct.add(product);
     }
-    
-    public String TotalPrice(){
+
+    public Double ShowTotalPrice(){
         double totalPrice=0;
-        String mensaje="";
         for (int i = 0; i < orderProduct.size(); i++) {
             totalPrice+=orderProduct.get(i).getPrice();
+        }
+        return totalPrice;
+    }
+    
+    public String ShowInfoOrder(){
+        String mensaje="";
+        for (int i = 0; i < orderProduct.size(); i++) {
             mensaje+="El producto "+orderProduct.get(i).getNameProduct()+" tuvo un costo de:$"+orderProduct.get(i).getPrice()+"\n";
         } 
-        return mensaje+"\n El costo total del pedido es de:$"+totalPrice;
+        return mensaje;
     }
 }

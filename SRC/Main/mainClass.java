@@ -20,7 +20,7 @@ public class mainClass {
         pedido.AddProduct(papas);
         pedido.AddProduct(zapatos);
         pedido.AddProduct(lentes);
-        System.out.println("id PEDIDO:"+pedido.getIdPedido()+"\n"+pedido.TotalPrice()+ " Pesos");
+        System.out.println("id PEDIDO:"+pedido.getIdPedido()+"\n"+pedido.ShowInfoOrder()+ "\n el costo total del pedido es de:$"+ pedido.ShowTotalPrice());
 
     }
 }
