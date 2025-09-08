@@ -32,8 +32,8 @@ public class product {
         this.price = price;
     }
 
-    public void ShowInfoProduct(){
-        System.out.println("Product Information \n Name:"+nameProduct+" \n id:"+idProduct);
+    public String ShowInfoProduct(){
+        return"Product Information \n Name:"+nameProduct+" \n id:"+idProduct;
     }
     
 }

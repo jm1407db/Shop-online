@@ -3,12 +3,14 @@ package Model;
 import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class pedido {
     private String idPedido;
     private ArrayList<product> orderProduct= new ArrayList<product>();
     private LocalDateTime buyDate;
+    private static final DateTimeFormatter formateadorhora= DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy HH:mm");
 
     public pedido(String idPedido) {
         this.idPedido = idPedido;
@@ -31,6 +33,14 @@ public class pedido {
         orderProduct.add(product);
     }
 
+    public String ShowDateOrder(){
+        return buyDate.format(formateadorhora);
+    }
+
+    public String ShowExpirationDate(){
+        return buyDate.plusHours(24).format(formateadorhora);
+    }
+
     public Double ShowTotalPrice(){
         double totalPrice=0;
         for (int i = 0; i < orderProduct.size(); i++) {
@@ -39,13 +49,13 @@ public class pedido {
         return totalPrice;
     }
 
-    public void ShowInfoOrder(){
-        System.out.println("Id del pedido="+ idPedido);
-        System.out.println("Fecha del pedido="+buyDate);
+    public String ShowInfoOrder(){
+        String InfoOrder="";
+        InfoOrder+= "Id del pedido="+ idPedido+"\n"+"Fecha del pedido"+ShowDateOrder();
         for (product p : orderProduct) {
-             System.out.println("El producto "+p.getNameProduct()+" tuvo un costo de:$"+p.getPrice());
+            InfoOrder+="\n El producto "+p.getNameProduct()+" tuvo un costo de:$"+p.getPrice();
         }
-        System.out.println("El costo total del producto es="+ ShowTotalPrice());
-        System.out.println("la fecha maxima de pago"+buyDate.plusHours(24));
+            InfoOrder+="\n El costo total del producto es="+ ShowTotalPrice()+"\n la fecha maxima de pago es el "+ ShowExpirationDate();
+            return InfoOrder;
     }
 }
