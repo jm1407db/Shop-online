@@ -10,11 +10,13 @@ public class pedido {
     private String idPedido;
     private ArrayList<product> orderProduct= new ArrayList<product>();
     private LocalDateTime buyDate;
+    private cliente cliente;
     private static final DateTimeFormatter formateadorhora= DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy HH:mm");
 
-    public pedido(String idPedido) {
+    public pedido(String idPedido,cliente cliente) {
         this.idPedido = idPedido;
         this.buyDate= buyDate.now();
+        this.cliente= cliente;
     }
 
     public LocalDateTime getBuyDate() {

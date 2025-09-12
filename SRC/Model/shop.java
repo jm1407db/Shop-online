@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class shop {
-    private ArrayList <product> ShopProducts= new ArrayList<product>();
+    private ArrayList <product> ShopProducts= ProducLoader.loadProducts("C:\\Users\\User\\Downloads\\Shop online\\Catalogo.txt");
     public String shopName;
     public String ubicacion;
 
@@ -29,6 +29,24 @@ public class shop {
             infoProductsOfShop+= product.ShowInfoProduct();
         }
         return infoProductsOfShop;
+    }
+
+    public boolean VerifyProductId(int idProduct ){
+        for (product product2 : ShopProducts) {
+            if(product2.getIdProduct()==idProduct){
+                return true;
+            }
+        }
+        return false ;
+    }
+
+    public product ReturnProduct(int idProduct){
+        for (product product : ShopProducts) {
+            if (product.getIdProduct()==idProduct) {
+                return product;
+            }
+        }
+        return null;
     }
     
 }

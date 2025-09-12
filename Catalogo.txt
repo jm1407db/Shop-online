@@ -1,0 +1,20 @@
+1, sopa maicena, 23450
+2, papas super ricas, 7500
+3, camisa, 15750
+4, lentes transition, 81350
+5, converse zapatos, 120400
+6, crema hidratante, 7000
+7, Televisor LG, 680900
+8, mouse logitech, 81700
+9, bocinas xps, 67000
+10, Cartas poker, 15000
+11, Teclado Mecánico, 250000
+12, Monitor Curvo Samsung, 850000
+13, Silla Gamer Ergonómica, 450000
+14, Audífonos Sony WH-1000XM5, 1200000
+15, Cafetera Nespresso, 350000
+16, Maleta de Viaje Samsonite, 280000
+17, Perfume Dior Sauvage, 410000
+18, Libro "Cien Años de Soledad", 55000
+19, Balón de Fútbol Golty, 95000
+20, Chaqueta de Cuero Vélez, 650000
