@@ -4,10 +4,10 @@ public class Card extends PaymentMethod {
     private String cardNumber;
     private LocalDateTime expeditionDateTime;
     private String CVV;
-    public Card(String ownerName, double amount, String cardNumber, LocalDateTime expeditionDateTime, String cVV) {
+    public Card(String ownerName, double amount, String cardNumber,String cVV) {
         super(ownerName, amount);
         this.cardNumber = cardNumber;
-        this.expeditionDateTime = expeditionDateTime;
+        expeditionDateTime = expeditionDateTime.now().plusYears(3);
         CVV = cVV;
     }
     @Override 

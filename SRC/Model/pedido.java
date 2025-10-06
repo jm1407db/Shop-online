@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class pedido {
-    //Atributo polimorfico pr que puede tomar diferentes formas
+    //Atributo polimorfico por que puede tomar diferentes formas
     private PaymentMethod metodoPago;
     private String idPedido;
     private ArrayList<product> orderProduct= new ArrayList<product>();
