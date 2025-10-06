@@ -7,16 +7,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class pedido {
+    //Atributo polimorfico pr que puede tomar diferentes formas
+    private PaymentMethod metodoPago;
     private String idPedido;
     private ArrayList<product> orderProduct= new ArrayList<product>();
     private LocalDateTime buyDate;
     private cliente cliente;
     private static final DateTimeFormatter formateadorhora= DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy HH:mm");
 
-    public pedido(String idPedido,cliente cliente) {
+    public void ProccessOrder(){
+        System.out.println("Procesando pedido "+ idPedido +"\n" );
+        metodoPago.ProccessPayment();
+    }
+    public pedido(String idPedido,cliente cliente,PaymentMethod metodoPago) {
         this.idPedido = idPedido;
         this.buyDate= buyDate.now();
         this.cliente= cliente;
+        this.metodoPago=metodoPago;
     }
 
     public LocalDateTime getBuyDate() {
@@ -43,7 +50,7 @@ public class pedido {
         return buyDate.plusHours(24).format(formateadorhora);
     }
 
-    public Double ShowTotalPrice(){
+    public double ShowTotalPrice(){
         double totalPrice=0;
         for (int i = 0; i < orderProduct.size(); i++) {
             totalPrice+=orderProduct.get(i).getPrice();
