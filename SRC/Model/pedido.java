@@ -17,7 +17,6 @@ public class pedido {
 
     public void ProccessOrder(){
         System.out.println("Procesando pedido "+ idPedido +"\n" );
-        metodoPago.ProccessPayment();
     }
     public pedido(String idPedido,cliente cliente,PaymentMethod metodoPago) {
         this.idPedido = idPedido;
@@ -25,7 +24,9 @@ public class pedido {
         this.cliente= cliente;
         this.metodoPago=metodoPago;
     }
-
+    public void resetPedido(){
+        this.orderProduct.clear();
+    }
     public LocalDateTime getBuyDate() {
         return buyDate;
     }

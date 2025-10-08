@@ -7,7 +7,7 @@ public class PaymentMethod {
         this.ownerName = ownerName;
         this.amount = amount;
     }
-    public void ProccessPayment(){
+    public void ProccessPayment(double totalPrice){
         
     }
     public String getOwnerName() {

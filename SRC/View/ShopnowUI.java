@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 
 import Model.BankTransfer;
 import Model.Card;
+import Model.PaymentMethod;
 import Model.ProducLoader;
 import Model.pedido;
 import Model.product;
@@ -29,8 +30,12 @@ public class ShopnowUI extends JFrame{
     private pedido pedido;
     //aqui traeremos lo productos con el product loader
     private ArrayList<product> catalog;
+    private PaymentMethod paymentMethod ;
     private cliente cliente;
-    public ShopnowUI(){
+    public ShopnowUI( cliente cliente, PaymentMethod paymentMethod){
+        this.cliente= cliente;
+        this.paymentMethod= paymentMethod;
+        this.pedido= new pedido(cliente.getId(), cliente, paymentMethod);
         setTitle("Productos-----------------------------Carrito compras");
         //tamaño de la ventana
         setSize(800,900);
@@ -40,10 +45,7 @@ public class ShopnowUI extends JFrame{
         setLayout(new BorderLayout());
 
         //se le asigna a catalogo los productos
-        catalog= ProducLoader.loadProducts("C:\\Users\\User\\Downloads\\Shop online\\Catalogo.txt");
-        cliente= new cliente("Pepe","123");
-
-    
+        catalog= ProducLoader.loadProducts("Catalogo.txt");
         ListModel= new DefaultListModel<>();
         //le asignamos los productos a la lista para que los organice con add element string 
         for (product product : catalog) {
@@ -53,13 +55,13 @@ public class ShopnowUI extends JFrame{
         productList=new JList<>(ListModel);
         JScrollPane scrollCatalogo= new JScrollPane(productList);
         JButton addButton= new JButton("Agregar al carrito");
-
+        cartArea = new JTextArea(10,30);
+        
         addButton.addActionListener((ActionEvent e)->{
             int selectProduct= productList.getSelectedIndex();
             if (selectProduct!=-1) {
                 product product= catalog.get(selectProduct);
                 pedido.AddProduct(product);
-                
                 cartArea.append(product.getNameProduct()+" $"+product.getPrice());
                 
             }
@@ -73,12 +75,17 @@ public class ShopnowUI extends JFrame{
         //Panel del carrito
         JScrollPane scrollCarrito= new JScrollPane(cartArea);
         JPanel rigthPanel= new JPanel(new BorderLayout());
-        rigthPanel.add(new JLabel("Carrito de compras"),BorderLayout.NORTH);
+        rigthPanel  .add(new JLabel("Carrito de compras"),BorderLayout.NORTH);
         rigthPanel.add(scrollCarrito,BorderLayout.CENTER);
 
         JButton checkoutButton = new JButton("Finalizar pedido");
         checkoutButton.addActionListener((ActionEvent e)->{
+            double totalPrice= pedido.ShowTotalPrice();
             cartArea.append(pedido.ShowInfoOrder());
+            paymentMethod.ProccessPayment(totalPrice);
+            if (totalPrice<paymentMethod.amount) {
+                pedido.resetPedido();
+            }
         });
         rigthPanel.add(checkoutButton,BorderLayout.SOUTH);
 

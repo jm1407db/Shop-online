@@ -1,4 +1,7 @@
 package Model;
+
+import javax.swing.JOptionPane;
+
 public class BankTransfer extends PaymentMethod{
     private int acountNumber;
     private String bankName;
@@ -8,9 +11,14 @@ public class BankTransfer extends PaymentMethod{
         this.bankName = bankName;
     }
     @Override
-    public void ProccessPayment(){
+    public void ProccessPayment(double totalPrice){
         String acountText=""+acountNumber;
-        System.out.println("Procesando pago desde cuenta ****"+ acountText.substring(acountText.length()-4)+"\n Banco: "+bankName);
+        if (totalPrice<=amount) {
+            JOptionPane.showMessageDialog(null,"Pago realizado desde Banco con numero de cuenta de ****"+acountText.substring(acountText.length()-4)+"\n Dinero total de la cuenta de"+(amount-totalPrice));
+            amount=amount-totalPrice;
+        }else{
+            JOptionPane.showMessageDialog(null, "Dinero en la cuenta insuficiente");
+        }
     }
     public int getAcountNumber() {
         return acountNumber;

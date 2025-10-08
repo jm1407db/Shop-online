@@ -1,5 +1,7 @@
 package Model;
 import java.time.LocalDateTime;
+
+import javax.swing.JOptionPane;
 public class Card extends PaymentMethod {
     private String cardNumber;
     private LocalDateTime expeditionDateTime;
@@ -11,9 +13,13 @@ public class Card extends PaymentMethod {
         CVV = cVV;
     }
     @Override 
-    public void ProccessPayment(){
-        
-        System.out.println("Procesando pago con Tarjeta terminada en ****" +cardNumber.substring(cardNumber.length()-4));
+     public void ProccessPayment(double totalPrice){
+        if (totalPrice<=amount) {
+            JOptionPane.showMessageDialog(null,"Pago realizado desde tarjeta de credito con numero ****"+cardNumber.substring(cardNumber.length()-4)+"\n Dinero total de la cuenta de"+(amount-totalPrice));
+            amount=amount-totalPrice;
+        }else{
+            JOptionPane.showMessageDialog(null, "Dinero en la cuenta insuficiente");
+        }
     }
     public String getCardNumber() {
         return cardNumber;
