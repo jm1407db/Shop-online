@@ -39,7 +39,8 @@ public class pedido {
         return idPedido;
     }
 
-    public void AddProduct(product product){
+    public void AddProduct(product product)throws IllegalArgumentException {
+        if (product==null) throw new IllegalArgumentException("El producto no puede ser nulo");
         orderProduct.add(product);
     }
 

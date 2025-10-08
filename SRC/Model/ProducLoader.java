@@ -1,7 +1,9 @@
 package Model;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -18,8 +20,11 @@ public class ProducLoader {
                 double precio= Double.parseDouble(values[2]);
                 products.add(new product(nombre, id, precio));
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error "+e.getMessage());
+        } catch (FileNotFoundException e) {// elFileNotFoundException es para que el try atrape solo el error cuando el ar
+            //el archivo no es encontrado para que se sepa especificamente cual es el error
+            JOptionPane.showMessageDialog(null, "No se encontro el archivo"+e.getMessage());
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Inconvenienet:"+e);
         }
         return products;
     }
